@@ -1,0 +1,27 @@
+public class Solution {
+    // Function to check if a linked list has a cycle
+    public boolean hasCycle(ListNode head) {
+        // Initialize slow and fast pointers initially pointing to the head
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // If the linked list is empty, there can't be a cycle, so return false
+        if (head == null) {
+            return false;
+        }
+
+        // Iterate through the linked list with a fast pointer moving twice as fast as the slow pointer
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next; // Move fast pointer two steps
+            slow = slow.next; // Move slow pointer one step
+
+            // If there's a cycle, the fast and slow pointers will meet at some point
+            if (fast == slow) {
+                return true; // Return true if a cycle is found
+            }
+        }
+
+        // If the fast pointer reaches the end (null), there is no cycle, so return false
+        return false;
+    }
+}
