@@ -1,0 +1,59 @@
+class Solution {
+    // Function to check if a linked list is a palindrome
+    public boolean isPalindrome(ListNode head) 
+    {
+        // If the linked list is empty or has only one node, it's a palindrome
+        if(head == null || head.next == null)
+        {  
+            return true;
+        }
+    
+        // Initialize slow and fast pointers for finding the middle of the linked list
+        ListNode slow = head;
+        ListNode fast = head;
+    
+        // Move the fast pointer twice as fast as the slow pointer to find the middle
+        while(fast.next != null && fast.next.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        // Reverse the second half of the linked list starting from slow.next
+        slow.next = reverseList(slow.next);
+        slow = slow.next; // Move slow to the start of the reversed second half
+        
+        ListNode dummy = head; // Dummy pointer to the original head
+        
+        // Compare elements of the first half and the reversed second half of the linked list
+        while(slow != null) 
+        {
+            if(dummy.val != slow.val)
+            { 
+                return false; // If values don't match, it's not a palindrome
+            }
+            dummy = dummy.next;
+            slow = slow.next;
+        }
+        
+        return true; // If all values match, it's a palindrome
+    }
+    
+    // Function to reverse a linked list
+    public ListNode reverseList(ListNode head) 
+    {
+        ListNode curr = head;
+        ListNode prev = null;
+        ListNode next = null;
+        
+        while(curr != null)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        
+        return prev; // Return the new head of the reversed linked list
+    }
+}
