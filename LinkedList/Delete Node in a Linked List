@@ -1,0 +1,15 @@
+class Solution 
+{
+    // Method to delete a node from a singly-linked list.
+    public void deleteNode(ListNode node) 
+    {
+        // Update the value of the current node to be the value of the next node.
+        node.val = node.next.val;
+        
+        // Set the next pointer of the current node to skip the next node and point to the node after it.
+        node.next = node.next.next;
+        
+        // Return from the method.
+        return;
+    }
+}
