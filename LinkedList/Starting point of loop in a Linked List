@@ -1,0 +1,24 @@
+public class Solution {
+    // Function to detect the node where a linked list has a cycle
+    public ListNode detectCycle(ListNode head) {
+        // Create a HashSet to store visited nodes
+        HashSet<ListNode> set = new HashSet<>();
+        
+        // Traverse through the linked list
+        while (head != null) {
+            // If the current node is already in the HashSet, it means a cycle is detected
+            if (set.contains(head)) {
+                return head; // Return the node where the cycle starts
+            }
+            
+            // Add the current node to the HashSet
+            set.add(head);
+            
+            // Move to the next node
+            head = head.next;
+        }
+        
+        // If the end of the list is reached and no cycle is found, return null
+        return null;
+    }
+}
