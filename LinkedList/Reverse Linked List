@@ -1,0 +1,24 @@
+class Solution 
+{
+    public ListNode reverseList(ListNode head) 
+    {
+        // Initialize three pointers: prev, curr, and next.
+        ListNode curr = head;   // Current node initially points to the head.
+        ListNode prev = null;   // Previous node is initially null as there's no node before the head.
+        ListNode next = null;   // Next node is initially null as we don't know what's after the head.
+
+        // Traverse the linked list while there are still nodes to process.
+        while (curr != null)
+        {
+            next = curr.next;    // Save a reference to the next node before changing it.
+
+            curr.next = prev;    // Reverse the direction of the current node to point to the previous node.
+
+            prev = curr;         // Move the 'prev' pointer one step ahead to the current node.
+            curr = next;         // Move the 'curr' pointer one step ahead to the next node.
+        }
+
+        // After the loop, 'prev' will point to the new head of the reversed list.
+        return prev;
+    }
+}
